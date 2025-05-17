@@ -8,6 +8,25 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Handle image loading errors
+document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('error', function() {
+        this.src = 'placeholder.jpg'; // Fallback image
+        this.alt = 'Image failed to load';
+    });
+});
+
+// Add loading state to form submission
+document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        const submitButton = this.querySelector('button[type="submit"]');
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<div class="formkit-spinner"><div></div><div></div><div></div></div><span>Submitting...</span>';
+        }
+    });
+});
+
 // Add a simple fade-in animation for sections
 document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section');

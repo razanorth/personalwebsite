@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Social Media Specialist - Free Download</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .book-landing {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+        .book-cover {
+            max-width: 300px;
+            margin: 2rem auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .email-form {
+            max-width: 400px;
+            margin: 2rem auto;
+        }
+        .email-form input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .email-form button {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .email-form button:hover {
+            background: #333;
+        }
+        .download-section {
+            display: none;
+            margin-top: 2rem;
+        }
+        .download-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <main class="book-landing">
+            <h1>The Social Media Specialist</h1>
+            <p>A comprehensive guide to mastering social media marketing</p>
+            
+            <div class="book-cover">
+                <!-- Replace with your actual book cover image -->
+                <img src="book-cover.jpg" alt="The Social Media Specialist Book Cover" style="width: 100%;">
+            </div>
+
+            <div class="email-form-container">
+                <h2>Get Your Free Copy</h2>
+                <p>Enter your email below to receive your free copy of The Social Media Specialist</p>
+                <form class="email-form" id="downloadForm">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit">Get Free Download</button>
+                </form>
+                <p id="formStatus" style="display: none; margin-top: 1rem;"></p>
+            </div>
+
+            <div class="download-section" id="downloadSection">
+                <h2>Thank you!</h2>
+                <p>Your download is ready. Click the button below to get your copy.</p>
+                <a href="the-social-media-specialist.pdf" class="button" download>Download PDF</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.getElementById('downloadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            const formStatus = document.getElementById('formStatus');
+            const submitButton = this.querySelector('button');
+            
+            // Disable the button and show loading state
+            submitButton.disabled = true;
+            submitButton.textContent = 'Processing...';
+            
+            try {
+                // Replace this URL with your Google Apps Script Web App URL
+                const response = await fetch('YOUR_GOOGLE_SCRIPT_URL', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: email })
+                });
+
+                if (response.ok) {
+                    // Show success message
+                    document.getElementById('downloadSection').classList.add('active');
+                    document.querySelector('.email-form-container').style.display = 'none';
+                } else {
+                    throw new Error('Failed to submit email');
+                }
+            } catch (error) {
+                // Show error message
+                formStatus.style.display = 'block';
+                formStatus.style.color = 'red';
+                formStatus.textContent = 'Sorry, there was an error. Please try again.';
+                submitButton.disabled = false;
+                submitButton.textContent = 'Get Free Download';
+            }
+        });
+    </script>
+</body>
+</html> 

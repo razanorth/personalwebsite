@@ -5,17 +5,77 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primary-color: #0066FF;
+    --text-color: #000;
+    --background-color: #fff;
+    --error-color: #dc3545;
+    --success-color: #28a745;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #fff;
+    color: var(--text-color);
+    background-color: var(--background-color);
     padding: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 1.1rem;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
+/* Focus styles for accessibility */
+:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary-color);
+    border-radius: 2px;
+}
+
+:focus:not(:focus-visible) {
+    box-shadow: none;
+}
+
+:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary-color);
+    border-radius: 2px;
+}
+
+/* Focus styles for better accessibility */
+a:focus,
+button:focus {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+}
+
+/* Ensure sufficient color contrast */
+.link {
+    color: #0000EE;
+    text-decoration: underline;
+}
+
+.link:hover,
+.link:focus {
+    color: #0000AA;
+}
+
+/* Navigation */
+nav {
+    margin-bottom: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+nav a {
+    color: #000;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+nav a:hover {
+    text-decoration: underline;
 }
 
 /* Typography */
@@ -32,30 +92,56 @@ h2 {
     margin: 2rem 0 1rem;
 }
 
-p {
-    margin-bottom: 1rem;
+h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 1.5rem 0 1rem;
+}
+
+p, li, footer p {
+    margin-bottom: 1.5rem;
     font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.thesis {
+    font-weight: normal;
+}
+
+.thesis strong {
+    font-weight: 700;
+}
+
+/* Image styles */
+.intro img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 2rem auto;
 }
 
 /* Lists */
-ul {
+ul, ol {
     list-style: none;
-    margin: 1rem 0;
+    margin: 1rem 0 2rem;
+    padding-left: 0;
 }
 
 li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
+    position: relative;
+    font-size: 1.1rem;
 }
 
 /* Links */
-a {
-    color: #000;
+a.link {
+    color: #0066FF;
     text-decoration: none;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #0066FF;
     transition: opacity 0.2s ease;
 }
 
-a:hover {
+a.link:hover {
     opacity: 0.7;
 }
 
@@ -64,17 +150,284 @@ section {
     margin-bottom: 3rem;
 }
 
+/* Email Form */
+.email-form {
+    margin: 2rem 0;
+}
+
+.email-form input {
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    border: 1px solid #000;
+    margin-right: 0.5rem;
+    width: 250px;
+}
+
+.email-form button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    background: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.email-form button:hover {
+    opacity: 0.8;
+}
+
+/* Links section */
+.links {
+    margin: 3rem 0;
+    line-height: 2;
+}
+
+/* Footer */
+footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+    font-size: 1.1rem;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     body {
-        padding: 1rem;
+        padding: 1.5rem;
+        max-width: 100%;
+        font-size: 1rem;
     }
     
     h1 {
         font-size: 2rem;
+        margin-bottom: 1.5rem;
     }
     
-    p {
+    h2 {
+        font-size: 1.4rem;
+        margin: 1.5rem 0 0.8rem;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+        margin: 1.2rem 0 0.8rem;
+    }
+    
+    p, li, footer p {
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+    }
+
+    section {
+        margin-bottom: 2rem;
+    }
+
+    nav {
+        margin-bottom: 2rem;
+    }
+
+    .links {
+        margin: 2rem 0;
+    }
+
+    footer {
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+    }
+
+    .email-form input {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    nav a {
         font-size: 1rem;
     }
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 480px) {
+    body {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .formkit-input {
+        width: 100% !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .formkit-submit {
+        width: 100% !important;
+    }
+    
+    nav {
+        overflow-x: auto;
+        gap: 0.5rem;
+    }
+    
+    nav a {
+        padding: 0.5rem 0;
+        flex-shrink: 0;
+    }
+}
+
+/* Loading states */
+.formkit-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Error states */
+.formkit-alert-error {
+    color: var(--error-color);
+    background-color: rgba(220, 53, 69, 0.1);
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+/* Success states */
+.formkit-alert-success {
+    color: var(--success-color);
+    background-color: rgba(40, 167, 69, 0.1);
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+/* ConvertKit Form Styling */
+.formkit-form {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+    max-width: 600px !important;
+    margin: 0.5rem 0 !important;
+}
+
+.formkit-form[data-uid] {
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin-top: 0.5rem !important;
+}
+
+.formkit-input {
+    padding: 0.8rem !important;
+    font-size: 1.1rem !important;
+    border: 1px solid #000 !important;
+    margin-right: 0.5rem !important;
+    width: 250px !important;
+    background: #fff !important;
+    border-radius: 0 !important;
+}
+
+.formkit-submit {
+    padding: 0.8rem 1.5rem !important;
+    font-size: 1.1rem !important;
+    background: #000 !important;
+    color: #fff !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: opacity 0.2s ease !important;
+    border-radius: 0 !important;
+    font-weight: normal !important;
+    text-transform: none !important;
+}
+
+.formkit-submit:hover {
+    opacity: 0.8 !important;
+}
+
+.formkit-alert {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+    font-size: 1rem !important;
+    padding: 0.8rem !important;
+    margin-top: 1rem !important;
+    border-radius: 0 !important;
+}
+
+.formkit-alert-success {
+    background: transparent !important;
+    color: green !important;
+    border: none !important;
+}
+
+.formkit-alert-error {
+    background: transparent !important;
+    color: red !important;
+    border: none !important;
+}
+
+/* Add styles to make the email input and subscribe button appear side-by-side */
+.formkit-form[data-uid="f86f51df78"] .formkit-fields[data-stacked="false"] {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.formkit-form[data-uid="f86f51df78"] .formkit-field,
+.formkit-form[data-uid="f86f51df78"] .formkit-submit {
+  margin: 0 5px 0 0;
+  width: auto;
+  flex: 0 1 auto;
+}
+
+.formkit-form[data-uid="f86f51df78"] .formkit-submit {
+  margin-right: 0;
+}
+
+/* Make the email form responsive */
+@media (max-width: 768px) {
+    .formkit-form[data-uid="f86f51df78"] .formkit-fields[data-stacked="false"] {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .formkit-form[data-uid="f86f51df78"] .formkit-field,
+    .formkit-form[data-uid="f86f51df78"] .formkit-submit {
+        margin: 0 0 0.5rem 0;
+        width: 100%;
+    }
+
+    .formkit-input {
+        width: 100% !important;
+        margin-right: 0 !important;
+    }
+
+    .formkit-submit {
+        width: 100% !important;
+    }
+}
+
+/* Remove default focus outline and add custom focus styles */
+a:focus {
+    outline: none;
+}
+
+a:focus-visible {
+    outline: none;
+    opacity: 0.8;
+}
+
+/* Ensure links remain accessible with keyboard navigation */
+a:focus-visible {
+    position: relative;
+}
+
+a:focus-visible::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    opacity: 0.8;
 } 
