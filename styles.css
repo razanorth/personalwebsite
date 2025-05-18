@@ -430,4 +430,24 @@ a:focus-visible::after {
     height: 1px;
     background-color: currentColor;
     opacity: 0.8;
+}
+
+/* ConvertKit form styling */
+.formkit-form[data-uid="f86f51df78"] .formkit-fields {
+  display: flex !important;          /* side-by-side */
+  gap: 8px;                          /* space between input & button */
+  align-items: center;               /* vertical alignment */
+}
+
+.formkit-form[data-uid="f86f51df78"] .formkit-field,
+.formkit-form[data-uid="f86f51df78"] .formkit-submit {
+  flex: 0 1 auto;                    /* shrink nicely */
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  /* let Kit stack on tablets / phones */
+  .formkit-form[data-uid="f86f51df78"] .formkit-fields {
+    flex-direction: column !important;
+  }
 } 
