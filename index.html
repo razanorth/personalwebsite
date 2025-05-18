@@ -25,52 +25,6 @@
     <title>Raza North</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://f.convertkit.com/ckjs/ck.5.js" defer></script>
-    <script>
-        window.addEventListener('load', function() {
-            // Initialize ConvertKit form
-            const form = document.querySelector('.formkit-form');
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const email = form.querySelector('input[name="email_address"]').value;
-                    
-                    // Show loading state
-                    const submitButton = form.querySelector('.formkit-submit');
-                    const originalText = submitButton.innerHTML;
-                    submitButton.innerHTML = '<div class="formkit-spinner"><div></div><div></div><div></div></div>';
-                    
-                    // Submit to ConvertKit
-                    fetch('https://f.kit.com/forms/8065504/subscriptions', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            email_address: email,
-                            form_id: '8065504'
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            form.innerHTML = '<p>cool, I\'ll send you updates when they come up</p>';
-                        } else {
-                            throw new Error(data.message || 'Something went wrong');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        submitButton.innerHTML = originalText;
-                        const errorAlert = form.querySelector('.formkit-alert-error');
-                        if (errorAlert) {
-                            errorAlert.innerHTML = '<li>Please try again later</li>';
-                        }
-                    });
-                });
-            }
-        });
-    </script>
 </head>
 <body>
     <div class="container">
@@ -135,7 +89,12 @@
 
             <section class="newsletter">
                 <p>sometimes i write about where the UGC world is headed next for both brands and creators. drop your email & i'll ping you when something new is happening in my world ↓</p>
-                <form class="seva-form formkit-form" data-uid="f86f51df78" data-format="inline" data-version="5">
+                <form action="https://app.convertkit.com/forms/8065504/subscriptions"
+                      class="seva-form formkit-form"
+                      method="post"
+                      data-uid="f86f51df78"
+                      data-format="inline"
+                      data-version="5">
                     <div data-style="clean">
                         <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
                         <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
